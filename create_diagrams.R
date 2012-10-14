@@ -1,0 +1,128 @@
+# This script will create png and svg diagrams of different distributions. The
+# diagrams will be put in four directories created in the current working 
+# directory: svg, svg_woth_params, png and png_with_params. In addition to this
+# a couple of plots will be created in the current directory that show all the 
+# distributions.
+
+source("plot_dist.R") # Make sure dist_plot.R is in the current working directory
+
+dir.create("png", showWarnings=F)
+setwd("./png")
+for(dist in dists) {
+  plot_dist_png(dist)
+}
+setwd("..")
+
+
+dir.create("svg", showWarnings=F)
+setwd("./svg")
+for(dist in dists) {
+  plot_dist_svg(dist)
+}
+setwd("..")
+
+
+dir.create("png_with_params", showWarnings=F)
+setwd("./png_with_params")
+plot_dist_png(dists$normal, labels=expression(mu, sigma[1], sigma[2]))
+plot_dist_png(dists$t, labels=expression(mu, sigma[1], sigma[2], df[1], df[2]))
+plot_dist_png(dists$uniform, expression(L, H))
+plot_dist_png(dists$beta, expression(list(a,b)))
+plot_dist_png(dists$beta_binomial, expression(list(a,b)))
+plot_dist_png(dists$bernouli, expression(theta))
+plot_dist_png(dists$gamma, expression(list(S, R)))
+plot_dist_png(dists$binomial, expression(list(p, n)))
+plot_dist_png(dists$negative_binomial, expression(list(p, r)))
+plot_dist_png(dists$folded_t, labels=expression(mu, sigma, df))
+plot_dist_png(dists$poisson, labels=expression(lambda))
+plot_dist_png(dists$chi_squared, labels=expression(k))
+plot_dist_png(dists$noncentral_chi_squared, labels=expression(list(k, lambda)))
+plot_dist_png(dists$double_exponential, labels=expression(mu, tau[1], tau[2]))
+plot_dist_png(dists$exponential, labels=expression(lambda))
+plot_dist_png(dists$shifted_exponential, labels=expression(lambda))
+plot_dist_png(dists$F, labels=expression(list(df[1], df[2])))
+plot_dist_png(dists$generalized_gamma, labels=expression(list(r, lambda, b)))
+plot_dist_png(dists$logistic, labels=expression(mu, tau[1], tau[2]))
+plot_dist_png(dists$log_normal, labels=expression(mu, sigma))
+plot_dist_png(dists$pareto, labels=expression(list(mu, sigma)))
+plot_dist_png(dists$weibull, labels=expression(list(v, lambda)))
+plot_dist_png(dists$categorical, labels=expression(list(v, lambda)))
+plot_dist_png(dists$noncentral_hypergeometric, labels=expression(list(n[1], n[2], m[1], psi)))
+setwd("..")
+
+
+dir.create("svg_with_params", showWarnings=F)
+setwd("./svg_with_params")
+plot_dist_svg(dists$normal, labels=expression(mu, sigma[1], sigma[2]))
+plot_dist_svg(dists$t, labels=expression(mu, sigma[1], sigma[2], df[1], df[2]))
+plot_dist_svg(dists$uniform, expression(L, H))
+plot_dist_svg(dists$beta, expression(list(a,b)))
+plot_dist_svg(dists$beta_binomial, expression(list(a,b)))
+plot_dist_svg(dists$bernouli, expression(theta))
+plot_dist_svg(dists$gamma, expression(list(S, R)))
+plot_dist_svg(dists$binomial, expression(list(p, n)))
+plot_dist_svg(dists$negative_binomial, expression(list(p, r)))
+plot_dist_svg(dists$folded_t, labels=expression(mu, sigma, df))
+plot_dist_svg(dists$poisson, labels=expression(lambda))
+plot_dist_svg(dists$chi_squared, labels=expression(k))
+plot_dist_svg(dists$noncentral_chi_squared, labels=expression(list(k, lambda)))
+plot_dist_svg(dists$double_exponential, labels=expression(mu, tau[1], tau[2]))
+plot_dist_svg(dists$exponential, labels=expression(lambda))
+plot_dist_svg(dists$shifted_exponential, labels=expression(lambda))
+plot_dist_svg(dists$F, labels=expression(list(df[1], df[2])))
+plot_dist_svg(dists$generalized_gamma, labels=expression(list(r, lambda, b)))
+plot_dist_svg(dists$logistic, labels=expression(mu, tau[1], tau[2]))
+plot_dist_svg(dists$log_normal, labels=expression(mu, sigma))
+plot_dist_svg(dists$pareto, labels=expression(list(mu, sigma)))
+plot_dist_svg(dists$weibull, labels=expression(list(v, lambda)))
+plot_dist_svg(dists$categorical, labels=expression(list(v, lambda)))
+plot_dist_svg(dists$noncentral_hypergeometric, labels=expression(list(n[1], n[2], m[1], psi)))
+setwd("..")
+
+plot_all_dist <- function() {
+  old_par <- par(mfcol=c(5,5), xpd=NA)
+  plot.new()
+  text(0.5, 0.5, "Coded\nby\nRasmus Bååth (2012)", cex=1.5)
+  plot_dist(dists$normal, labels=expression(mu, sigma[1], sigma[2]))
+  plot_dist(dists$t, labels=expression(mu, sigma[1], sigma[2], df[1], df[2]))
+  plot_dist(dists$uniform, expression(L, H))
+  plot_dist(dists$beta, expression(list(a,b)))
+  plot_dist(dists$beta_binomial, expression(list(a,b)))
+  plot_dist(dists$bernouli, expression(theta))
+  plot_dist(dists$gamma, expression(list(S, R)))
+  plot_dist(dists$binomial, expression(list(p, n)))
+  plot_dist(dists$negative_binomial, expression(list(p, r)))
+  plot_dist(dists$folded_t, labels=expression(mu, sigma, df))
+  plot_dist(dists$poisson, labels=expression(lambda))
+  plot_dist(dists$chi_squared, labels=expression(k))
+  plot_dist(dists$noncentral_chi_squared, labels=expression(list(k, lambda)))
+  plot_dist(dists$double_exponential, labels=expression(mu, tau[1], tau[2]))
+  plot_dist(dists$exponential, labels=expression(lambda))
+  plot_dist(dists$shifted_exponential, labels=expression(lambda))
+  plot_dist(dists$F, labels=expression(list(df[1], df[2])))
+  plot_dist(dists$generalized_gamma, labels=expression(list(r, lambda, b)))
+  plot_dist(dists$logistic, labels=expression(mu, tau[1], tau[2]))
+  plot_dist(dists$log_normal, labels=expression(mu, sigma))
+  plot_dist(dists$pareto, labels=expression(list(mu, sigma)))
+  plot_dist(dists$weibull, labels=expression(list(v, lambda)))
+  plot_dist(dists$categorical, labels=expression(list(v, lambda)))
+  plot_dist(dists$noncentral_hypergeometric, labels=expression(list(n[1], n[2], m[1], psi)))
+  par(old_par)
+}
+
+
+png("all_dists.png", 800, 600, res=96)
+plot_all_dist()
+dev.off()
+
+svg("all_dists.svg", 8.75, 6.56)
+plot_all_dist()
+dev.off()
+
+# Not embedding any fonts unfortunately. Will only render correctly if the right
+# fonts are on the viewer's computer...
+pdf("all_dists.pdf",  8.75, 6.56)
+plot_all_dist()
+dev.off()
+
+#zip("distribution_diagrams.zip", c("./all_dists.pdf", "./all_dists.png","./all_dists.svg",dir(c("svg", "png","svg_with_params", "png_with_params"),pattern="\\.(png|svg|pdf)$",recursive=F, full.names=T)))
