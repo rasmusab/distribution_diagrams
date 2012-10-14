@@ -15,7 +15,7 @@ source("plot_dist.R")
 plot_dist(dists$normal)
 ```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1.png) 
+![plot of chunk unnamed-chunk-1](//github.com/rasmusab/distribution_diagrams/tree/master/figure/unnamed-chunk-1.png) 
 
 If you want to you can fill in the parameters yourself in the drawing program later but you can also make `plot_dist` draw the parameters by supplying a character or expression vector.
 
@@ -27,7 +27,7 @@ plot_dist(dists$normal, labels = c(mean = expression(M[1]), right_sd = expressio
 plot_dist(dists$gamma, labels = c(params = "S, R"))
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-21.png) ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-22.png) ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-23.png) ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-24.png) 
+![plot of chunk unnamed-chunk-2](//github.com/rasmusab/distribution_diagrams/tree/master/figure/unnamed-chunk-21.png) ![plot of chunk unnamed-chunk-2](//github.com/rasmusab/distribution_diagrams/tree/master/figure/unnamed-chunk-22.png) ![plot of chunk unnamed-chunk-2](//github.com/rasmusab/distribution_diagrams/tree/master/figure/unnamed-chunk-23.png) ![plot of chunk unnamed-chunk-2](//github.com/rasmusab/distribution_diagrams/tree/master/figure/unnamed-chunk-24.png) 
 
 
 The image below shows the distributions that are currently implemented which covers the univariate distributions in [jags](http://mcmc-jags.sourceforge.net/) and some more. I am not overly familiar with all of these distributions and I was not sure what was the most "canonical" shape for some of them (the generalized gamma distribution for example). If you have any feedback, questions or suggestion (maybe on what distributions to add) please don't hesitate to contact me ([rasmus.baath@lucs.lu.se](rasmus.baath@lucs.lu.se))!
@@ -50,7 +50,7 @@ The diagrams produced by `plot_dist` are made to look good when being around 2-3
 plot_dist(dists$beta, labels = c(params = "a, b"), scale = 3)
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
+![plot of chunk unnamed-chunk-3](//github.com/rasmusab/distribution_diagrams/tree/master/figure/unnamed-chunk-3.png) 
 
 
 However, if you just want to make `svg` or `png` files to import into a drawing program you can use the convenience functions `plot_dist_svg` and `plot_dist_png`.
@@ -99,7 +99,7 @@ Here we see that the normal distribution has three named labels and to, for exam
 plot_dist(dists$normal, labels = c(mean = "M", left_sd = expression(sigma)))
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6.png) 
+![plot of chunk unnamed-chunk-6](//github.com/rasmusab/distribution_diagrams/tree/master/figure/unnamed-chunk-6.png) 
 
 
 You can also change the color of the diagrams using the parameter `color`.
@@ -108,5 +108,5 @@ You can also change the color of the diagrams using the parameter `color`.
 plot_dist(dists$bernouli, labels = c(p = "p"), color = "purple")
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7.png) 
+![plot of chunk unnamed-chunk-7](//github.com/rasmusab/distribution_diagrams/tree/master/figure/unnamed-chunk-7.png) 
 
