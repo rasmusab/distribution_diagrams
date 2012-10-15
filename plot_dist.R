@@ -1,3 +1,9 @@
+# Coded by Rasmus Bååth  
+# rasmus.baath@lucs.lu.se
+# www.sumsar.net
+# If you modify the code, please keep this header. Thanks!
+
+
 plot_dist <- function(dist, labels=c(), scale = 1, color="skyblue") {
   old_par <- par(mar = c(0.3, 0, 0, 0), xaxt='n', yaxt='n',ann=FALSE, bty="n", xpd=NA)  
   x <- dist$x
