@@ -115,6 +115,10 @@ png("all_dists.png", 800, 600, res=96)
 plot_all_dist()
 dev.off()
 
+png("all_dists_smaller.png", 700, 550, res=85)
+plot_all_dist()
+dev.off()
+
 svg("all_dists.svg", 8.75, 6.56)
 plot_all_dist()
 dev.off()

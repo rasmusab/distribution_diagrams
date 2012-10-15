@@ -66,7 +66,51 @@ As svg is a vector format you can then scale the diagrams to your liking in your
 Diagram customization
 ----------------
 
-In order to know the label names of the different parameters you just look at the definition of the distribution in the file `plot_dist.R`. The following is the definition of the normal distribution.
+In order to know the label names of the different parameters you just look at the `labels` element of the corresponding distribution. For example:
+
+```r
+dists$t$labels
+```
+
+```
+## $mean
+## [1] 0.5 0.3
+## 
+## $right_sd
+## [1] 0.75 0.65
+## 
+## $left_sd
+## [1] 0.25 0.65
+## 
+## $right_df
+## [1] 0.90 0.35
+## 
+## $left_df
+## [1] 0.10 0.35
+```
+
+
+Here we see that the t distribution has five named labels and to make a diagram with a $\sigma$ to the left, and a `df` to the right we would write:
+
+
+```r
+plot_dist(dists$t, labels = c(mean = expression(mu), left_sd = expression(sigma), 
+    right_df = "df"))
+```
+
+![plot of chunk unnamed-chunk-6](https://raw.github.com/rasmusab/distribution_diagrams/master/figure/unnamed-chunk-6.png) 
+
+
+You can also change the color of the diagrams using the parameter `color`.
+
+```r
+plot_dist(dists$bernouli, labels = c(p = "p"), color = "purple")
+```
+
+![plot of chunk unnamed-chunk-7](https://raw.github.com/rasmusab/distribution_diagrams/master/figure/unnamed-chunk-7.png) 
+
+
+If you want to coustomize a diagram further you can create new distribution definitions. For examples of the current definitions look in the file `plot_dist.R`. The following is the definition of the normal distribution:
 
 
 ```r
@@ -89,24 +133,18 @@ normal = list(
     # Coordinates and names for the parameter labels
     labels = list(mean = c(0.5, 0.3), right_sd = c(0.80, 0.5), left_sd = c(0.20, 0.5))
   )
-
 ```
 
-Here we see that the normal distribution has three named labels and to, for example, make a diagram with a $\sigma$ to the left we would write:
 
+If we, e.g., wanted to make a folded normal distribution, we could take this denifintion and change it in the following way:
 
 ```r
-plot_dist(dists$normal, labels = c(mean = "M", left_sd = expression(sigma)))
+folded_normal <- dists$normal
+folded_normal$name <- "folded norm."
+folded_normal$name_pos <- c(0.35, 0.1)
+folded_normal$x <- seq(0, 3.3, 0.1)
+folded_normal$labels <- list(sd = c(0.55, 0.5))
+plot_dist(folded_normal, "sd")
 ```
 
-![plot of chunk unnamed-chunk-6](https://raw.github.com/rasmusab/distribution_diagrams/master/figure/unnamed-chunk-6.png) 
-
-
-You can also change the color of the diagrams using the parameter `color`.
-
-```r
-plot_dist(dists$bernouli, labels = c(p = "p"), color = "purple")
-```
-
-![plot of chunk unnamed-chunk-7](https://raw.github.com/rasmusab/distribution_diagrams/master/figure/unnamed-chunk-7.png) 
-
+![plot of chunk unnamed-chunk-9](https://raw.github.com/rasmusab/distribution_diagrams/master/figure/unnamed-chunk-9.png) 

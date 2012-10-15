@@ -16,11 +16,11 @@ plot_dist <- function(dist, labels=c(), scale = 1, color="skyblue") {
   points_to_NA <- points_to_NA[-c(1, length(points_to_NA))]
   y[points_to_NA] <- NA
   if("bar" %in% dist$plot_type) {
-    lines(x, y, type="h", col=color, lwd=10, lend=1)
+    lines(x, y, type="h", col=color, lwd=6, lend=1)
     # Using legend to draw a white transparent box behind the text
-    legend(grconvertX(dist$name_pos[1], from="npc"), grconvertY(dist$name_pos[2], from="npc"), 
-           dist$name, cex=1.5 * scale, xjust=0.5, yjust=0.5, bty="o", box.lwd = 0,bg=rgb(1,1, 1,0.5), 
-           x.intersp=-1, y.intersp=0 , text.col="transparent")
+    legend(grconvertX(dist$name_pos[1], from="npc"), grconvertY(dist$name_pos[2], from="npc"),
+           dist$name, cex=1.5 * scale, xjust=0.5, yjust=0.5, bty="o", box.lwd = 0, box.col="transparent",
+           bg=rgb(1,1, 1,0.5),x.intersp=-1, y.intersp=0 , text.col="transparent")
   }
   if("line" %in% dist$plot_type) {
     lines(x, y, type="l", col=color, lwd=3 * scale)
