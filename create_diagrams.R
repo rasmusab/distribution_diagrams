@@ -48,6 +48,8 @@ plot_dist_png(dists$pareto, labels=expression(list(mu, sigma)))
 plot_dist_png(dists$weibull, labels=expression(list(v, lambda)))
 plot_dist_png(dists$categorical, labels=expression(list(v, lambda)))
 plot_dist_png(dists$noncentral_hypergeometric, labels=expression(list(n[1], n[2], m[1], psi)))
+plot_dist_png(dists$right_censored_normal, expression(mu, sigma[1], c, sigma[2]))
+plot_dist_png(dists$left_censored_normal, expression(mu, sigma[1], c, sigma[2]))
 setwd("..")
 
 
@@ -77,10 +79,12 @@ plot_dist_svg(dists$pareto, labels=expression(list(mu, sigma)))
 plot_dist_svg(dists$weibull, labels=expression(list(v, lambda)))
 plot_dist_svg(dists$categorical, labels=expression(list(v, lambda)))
 plot_dist_svg(dists$noncentral_hypergeometric, labels=expression(list(n[1], n[2], m[1], psi)))
+plot_dist_svg(dists$right_censored_normal, expression(mu, sigma[1], c, sigma[2]))
+plot_dist_svg(dists$left_censored_normal, expression(mu, sigma[1], c, sigma[2]))
 setwd("..")
 
 plot_all_dist <- function() {
-  old_par <- par(mfcol=c(5,5), xpd=NA)
+  old_par <- par(mfrow=c(6,5), xpd=NA)
   plot.new()
   text(0.5, 0.5, "Coded\nby\nRasmus Bååth (2012)", cex=1.5)
   plot_dist(dists$normal, labels=expression(mu, sigma[1], sigma[2]))
@@ -107,26 +111,28 @@ plot_all_dist <- function() {
   plot_dist(dists$weibull, labels=expression(list(v, lambda)))
   plot_dist(dists$categorical, labels=expression(list(v, lambda)))
   plot_dist(dists$noncentral_hypergeometric, labels=expression(list(n[1], n[2], m[1], psi)))
+  plot_dist(dists$right_censored_normal, expression(mu, sigma[1], c, sigma[2]))
+  plot_dist(dists$left_censored_normal, expression(mu, sigma[1], c, sigma[2]))
   par(old_par)
 }
+plot_all_dist()
 
-
-png("all_dists.png", 800, 600, res=96)
+png("all_dists.png", 160 * 5, 120*6, res=96)
 plot_all_dist()
 dev.off()
 
-png("all_dists_smaller.png", 700, 550, res=85)
+png("all_dists_smaller.png", 140 * 5, 110* 6, res=85)
 plot_all_dist()
 dev.off()
 
-svg("all_dists.svg", 8.75, 6.56)
+svg("all_dists.svg", 1.75 * 5, 1.33 * 6)
 plot_all_dist()
 dev.off()
 
 # Not embedding any fonts unfortunately. Will only render correctly if the right
 # fonts are on the viewer's computer...
-pdf("all_dists.pdf",  8.75, 6.56)
+pdf("all_dists.pdf",  1.75 * 5, 1.33 * 6)
 plot_all_dist()
 dev.off()
 
-#zip("distribution_diagrams.zip", c("./all_dists.pdf", "./all_dists.png","./all_dists.svg",dir(c("svg", "png","svg_with_params", "png_with_params"),pattern="\\.(png|svg|pdf)$",recursive=F, full.names=T)))
+zip("distribution_diagrams.zip", c("./all_dists.pdf", "./all_dists.png","./all_dists.svg",dir(c("svg", "png","svg_with_params", "png_with_params"),pattern="\\.(png|svg|pdf)$",recursive=F, full.names=T)))

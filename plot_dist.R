@@ -301,6 +301,46 @@ dists <- list(
     ddist = function(x, rate, shift) {dexp(x - shift, rate)},
     ddist_params = list(rate=0.35, shift = 1),
     labels = list(params = c(0.6, 0.55))
+  ),
+  right_censored_normal= list(
+    # Name of the distribution to be displayed in the plot
+    name = "r-cens.\nnormal",
+    # Position of the name in the plot
+    name_pos = c(0.5, 0.2),
+    # Plot type, "line" for a line plots and "bar" for bar plots.
+    plot_type = "line",
+    # The values of the x-axis.
+    x = seq(-3.3, 3.3, 0.01),
+    # If top_space = 0 the distribution extends to the top of the graph, if 
+    # 0 > top_space < 1 then that proportion of space is left at the top.
+    top_space = 0,
+    # The function defining the probability density function
+    ddist = function(x, mean, sd, right_limit) {ifelse(x < right_limit, dnorm(x, mean, sd), 0)},
+    # The arguments given to the probability density function (has to be named) 
+    ddist_params = list(mean=0, sd=1, right_limit=1.75),
+    # Coordinates and names for the parameter labels
+    labels = list(mean = c(0.5, 0.45), right_sd = c(0.77, 0.60), right_limit=c(0.83,0.175), 
+                  left_sd = c(0.23, 0.60))
+  ),
+  left_censored_normal= list(
+    # Name of the distribution to be displayed in the plot
+    name = "l-cens.\nnormal",
+    # Position of the name in the plot
+    name_pos = c(0.5, 0.2),
+    # Plot type, "line" for a line plots and "bar" for bar plots.
+    plot_type = "line",
+    # The values of the x-axis.
+    x = seq(-3.3, 3.3, 0.01),
+    # If top_space = 0 the distribution extends to the top of the graph, if 
+    # 0 > top_space < 1 then that proportion of space is left at the top.
+    top_space = 0,
+    # The function defining the probability density function
+    ddist = function(x, mean, sd, left_limit) {ifelse(x > left_limit, dnorm(x, mean, sd), 0)},
+    # The arguments given to the probability density function (has to be named) 
+    ddist_params = list(mean=0, sd=1, left_limit=-1.75),
+    # Coordinates and names for the parameter labels
+    labels = list(mean = c(0.5, 0.45), right_sd = c(0.77, 0.60), left_limit=c(0.17,0.175), 
+                  left_sd = c(0.23, 0.60))
   )
 )
 
