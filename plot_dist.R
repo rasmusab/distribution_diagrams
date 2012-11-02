@@ -85,7 +85,7 @@ dists <- list(
     top_space = 0,
     ddist = dgamma,
     ddist_params = list(shape=1.3, rate=2.5),
-    labels = list(params = c(0.50, 0.5))
+    labels = list(params = c(0.60, 0.5))
   ),
   t = list(
     name = "t distrib.",
