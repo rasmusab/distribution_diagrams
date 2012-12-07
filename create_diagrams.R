@@ -21,6 +21,12 @@ for(dist in dists) {
 }
 setwd("..")
 
+dir.create("svg_without_names", showWarnings=F)
+setwd("./svg_without_names")
+for(dist in dists) {
+  plot_dist_svg(dist, plot_dist_name=F)
+}
+setwd("..")
 
 dir.create("png_with_params", showWarnings=F)
 setwd("./png_with_params")

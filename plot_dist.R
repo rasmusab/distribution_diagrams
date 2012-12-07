@@ -4,7 +4,7 @@
 # If you modify the code, please keep this header. Thanks!
 
 
-plot_dist <- function(dist, labels=c(), scale = 1, color="skyblue") {
+plot_dist <- function(dist, labels=c(), scale = 1, color="skyblue", plot_dist_name=T) {
   old_par <- par(mar = c(0.3, 0, 0, 0), xaxt='n', yaxt='n',ann=FALSE, bty="n", xpd=NA)  
   x <- dist$x
   y <- do.call(dist$ddist, c(list(x=x), dist$ddist_params))
@@ -18,16 +18,19 @@ plot_dist <- function(dist, labels=c(), scale = 1, color="skyblue") {
   if("bar" %in% dist$plot_type) {
     lines(x, y, type="h", col=color, lwd=6, lend=1)
     # Using legend to draw a white transparent box behind the text
-    legend(grconvertX(dist$name_pos[1], from="npc"), grconvertY(dist$name_pos[2], from="npc"),
-           dist$name, cex=1.5 * scale, xjust=0.5, yjust=0.5, bty="o", box.lwd = 0, box.col="transparent",
-           bg=rgb(1,1, 1,0.5),x.intersp=-1, y.intersp=0 , text.col="transparent")
+    if(plot_dist_name) {
+      legend(grconvertX(dist$name_pos[1], from="npc"), grconvertY(dist$name_pos[2], from="npc"),
+             dist$name, cex=1.5 * scale, xjust=0.5, yjust=0.5, bty="o", box.lwd = 0, box.col="transparent",
+             bg=rgb(1,1, 1,0.5),x.intersp=-1, y.intersp=0 , text.col="transparent")
+    }
   }
   if("line" %in% dist$plot_type) {
     lines(x, y, type="l", col=color, lwd=3 * scale)
   }
   lines(grconvertX(c(0.037, (1 - 0.037)), from="npc"), grconvertY(c(-0.02,-0.02), from="npc"), lwd=2 * scale)
-  text(grconvertX(dist$name_pos[1], from="npc"), grconvertY(dist$name_pos[2], from="npc"), dist$name, cex=1.5 * scale)
-  
+  if(plot_dist_name) {
+    text(grconvertX(dist$name_pos[1], from="npc"), grconvertY(dist$name_pos[2], from="npc"), dist$name, cex=1.5 * scale)
+  }
   
   if(is.character(names(labels))) {
     for(label_name in names(labels)) {
@@ -113,10 +116,10 @@ dists <- list(
     name_pos = c(0.5, 0.1),
     plot_type = "line",
     x = seq(0, 1, 0.001),
-    top_space = 0.5,
+    top_space = 0.6,
     ddist = dunif,
     ddist_params = list(min=0.15, max=0.85),
-    labels = list(min=c(0.18,0.65), max=c(0.82,0.65))
+    labels = list(min=c(0.18,0.55), max=c(0.82,0.55))
   ),
   bernouli = list(
     name = "Bernouli",
@@ -376,20 +379,20 @@ dists <- list(
   )
 )
 
-plot_dist_svg <- function(dist, labels=c(), fname="", color="skyblue") {
+plot_dist_svg <- function(dist, labels=c(), fname="", color="skyblue", plot_dist_name=T) {
   if(fname == "") {
     fname = paste(gsub("\\W", "", gsub("\\s", "_", dist$name)), ".svg", sep="")
   }
   svg(fname, width=2.25, height=1.688, bg="transparent")
-  plot_dist(dist, labels, color=color)
+  plot_dist(dist, labels, color=color, plot_dist_name=plot_dist_name)
   dev.off()
 }
 
-plot_dist_png <- function(dist, labels=c(), fname="", color="skyblue") {
+plot_dist_png <- function(dist, labels=c(), fname="", color="skyblue", plot_dist_name=T) {
   if(fname == "") {
     fname = paste(gsub("\\W", "", gsub("\\s", "_", dist$name)), ".png", sep="")
   }
   png(fname, width=165, height=123, bg="transparent", res=72, )
-  plot_dist(dist, labels, color=color)
+  plot_dist(dist, labels, color=color, plot_dist_name=plot_dist_name)
   dev.off()
 }
