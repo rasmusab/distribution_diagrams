@@ -132,21 +132,21 @@ plot_all_dist <- function() {
 }
 # X11(width=9, height=8.7);plot_all_dist()
 
-png("all_dists.png", 160 * 5, 120*6, res=96)
+png("all_dists.png", 155 * 5, 118*7, res=96)
 plot_all_dist()
 dev.off()
 
-png("all_dists_smaller.png", 140 * 5, 110* 6, res=85)
+png("all_dists_smaller.png", 136 * 5, 105* 7, res=85)
 plot_all_dist()
 dev.off()
 
-svg("all_dists.svg", 1.75 * 5, 1.33 * 6)
+svg("all_dists.svg", 1.67 * 5, 1.28 * 7)
 plot_all_dist()
 dev.off()
 
 # Not embedding any fonts unfortunately. Will only render correctly if the right
 # fonts are on the viewer's computer...
-pdf("all_dists.pdf",  1.75 * 5, 1.33 * 6)
+pdf("all_dists.pdf",  1.67 * 5, 1.28 * 7)
 plot_all_dist()
 dev.off()
 
