@@ -87,6 +87,16 @@ dists <- list(
     ddist_params = list(shape=1.3, rate=2.5),
     labels = list(params = c(0.60, 0.5))
   ),
+  inv_gamma = list(
+    name = "inv-gamma",
+    name_pos = c(0.42, 0.1),
+    plot_type = "line",
+    x = seq(0, 1.1, 0.01),
+    top_space = 0,
+    ddist = function(x, shape, scale) {scale^shape / gamma(shape) * x^(-shape-1)*exp(-scale/x)},
+    ddist_params = list(shape=3, scale=1),
+    labels = list(params = c(0.65, 0.5))
+  ),
   t = list(
     name = "t distrib.",
     name_pos = c(0.5, 0.1),
@@ -94,8 +104,8 @@ dists <- list(
     x = seq(-3.0, 3.0, 0.01),
     top_space = 0,
     ddist = dt,
-    ddist_params = list(ncp=0, df=1),
-    labels = list(mean = c(0.5, 0.3), right_sd = c(0.75, 0.65), left_sd = c(0.25, 0.65), 
+    ddist_params = list(ncp=0, df=3),
+    labels = list(mean = c(0.5, 0.3), right_scale = c(0.75, 0.65), left_scale = c(0.25, 0.65), 
                   right_df = c(0.90, 0.35), left_df = c(0.10, 0.35))
   ),
   uniform = list(
@@ -109,7 +119,7 @@ dists <- list(
     labels = list(min=c(0.18,0.65), max=c(0.82,0.65))
   ),
   bernouli = list(
-    name = "bernouli",
+    name = "Bernouli",
     name_pos = c(0.5, 0.1),
     plot_type = "bar",
     x = round(seq(-0.4, 1.4, 0.1), 1),
@@ -135,11 +145,11 @@ dists <- list(
     x = seq(0.0, 3.0, 0.01),
     top_space = 0,
     ddist = dt,
-    ddist_params = list(ncp=0, df=1),
-    labels = list(mean = c(0.15, 0.5), sd = c(0.4, 0.6), df = c(0.65, 0.4))
+    ddist_params = list(ncp=0, df=3),
+    labels = list(mean = c(0.15, 0.5), scale = c(0.43, 0.62), df = c(0.65, 0.4))
   ),
   poisson = list(
-    name = "poisson",
+    name = "Poisson",
     name_pos = c(0.3, 0.1),
     plot_type = "bar",
     x = seq(-1, 10.0, 1),
@@ -229,17 +239,17 @@ dists <- list(
     labels = list(params=c(0.70, 0.65))
   ),
   pareto = list(
-    name = "pareto",
+    name = "Pareto",
     name_pos = c(0.65, 0.2),
     plot_type = "line",
     x = seq(0.1, 1, 0.01),
     top_space = 0,
     ddist = function(x, alpha, c) {alpha*c^alpha*x^-(alpha+1)},
-    ddist_params = list(alpha=1, c=1),
+    ddist_params = list(alpha=2, c=1),
     labels = list(params=c(0.30, 0.65))
   ),
   weibull = list(
-    name = "weibull",
+    name = "Weibull",
     name_pos = c(0.35, 0.1),
     plot_type = "line",
     x = seq(0, 2.5, 0.01),
@@ -303,44 +313,66 @@ dists <- list(
     labels = list(params = c(0.6, 0.55))
   ),
   right_censored_normal= list(
-    # Name of the distribution to be displayed in the plot
     name = "r-cens.\nnormal",
-    # Position of the name in the plot
     name_pos = c(0.5, 0.2),
-    # Plot type, "line" for a line plots and "bar" for bar plots.
     plot_type = "line",
-    # The values of the x-axis.
     x = seq(-3.3, 3.3, 0.01),
-    # If top_space = 0 the distribution extends to the top of the graph, if 
-    # 0 > top_space < 1 then that proportion of space is left at the top.
     top_space = 0,
-    # The function defining the probability density function
     ddist = function(x, mean, sd, right_limit) {ifelse(x < right_limit, dnorm(x, mean, sd), 0)},
-    # The arguments given to the probability density function (has to be named) 
     ddist_params = list(mean=0, sd=1, right_limit=1.75),
-    # Coordinates and names for the parameter labels
     labels = list(mean = c(0.5, 0.45), right_sd = c(0.77, 0.60), right_limit=c(0.83,0.175), 
                   left_sd = c(0.23, 0.60))
   ),
   left_censored_normal= list(
-    # Name of the distribution to be displayed in the plot
     name = "l-cens.\nnormal",
-    # Position of the name in the plot
     name_pos = c(0.5, 0.2),
-    # Plot type, "line" for a line plots and "bar" for bar plots.
     plot_type = "line",
-    # The values of the x-axis.
     x = seq(-3.3, 3.3, 0.01),
-    # If top_space = 0 the distribution extends to the top of the graph, if 
-    # 0 > top_space < 1 then that proportion of space is left at the top.
     top_space = 0,
-    # The function defining the probability density function
     ddist = function(x, mean, sd, left_limit) {ifelse(x > left_limit, dnorm(x, mean, sd), 0)},
-    # The arguments given to the probability density function (has to be named) 
     ddist_params = list(mean=0, sd=1, left_limit=-1.75),
-    # Coordinates and names for the parameter labels
     labels = list(mean = c(0.5, 0.45), right_sd = c(0.77, 0.60), left_limit=c(0.17,0.175), 
                   left_sd = c(0.23, 0.60))
+  ), 
+    cauchy = list(
+    name = "Cauchy",
+    name_pos = c(0.5, 0.1),
+    plot_type = "line",
+    x = seq(-3.0, 3.0, 0.01),
+    top_space = 0,
+    ddist = dt,
+    ddist_params = list(ncp=0, df=1),
+    labels = list(location = c(0.5, 0.3), right_scale = c(0.77, 0.55), left_scale = c(0.23, 0.55))
+  ),
+  half_t = list(
+    name = "half-t",
+    name_pos = c(0.3, 0.1),
+    plot_type = "line",
+    x = seq(0.0, 3.0, 0.01),
+    top_space = 0,
+    ddist = dt,
+    ddist_params = list(ncp=0, df=3),
+    labels = list(scale = c(0.43, 0.62), df = c(0.65, 0.4))
+  ),
+  half_cauchy = list(
+    name = "half-Cauchy",
+    name_pos = c(0.36, 0.1),
+    plot_type = "line",
+    x = seq(0.0, 3.0, 0.01),
+    top_space = 0,
+    ddist = dt,
+    ddist_params = list(ncp=0, df=1),
+    labels = list(scale = c(0.53, 0.5))
+  ),
+  half_normal = list(
+    name = "half-normal",
+    name_pos = c(0.36, 0.1),
+    plot_type = "line",
+    x = seq(0.0, 3.0, 0.01),
+    top_space = 0,
+    ddist = dnorm,
+    ddist_params = list(mean=0, sd=1),
+    labels = list(sd = c(0.53, 0.5))
   )
 )
 
