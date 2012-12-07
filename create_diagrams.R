@@ -156,4 +156,4 @@ pdf("all_dists.pdf",  1.67 * 5, 1.28 * 7)
 plot_all_dist()
 dev.off()
 
-zip("distribution_diagrams.zip", c("./all_dists.pdf", "./all_dists.png","./all_dists.svg",dir(c("svg", "png","svg_with_params", "png_with_params"),pattern="\\.(png|svg|pdf)$",recursive=F, full.names=T)))
+zip("distribution_diagrams.zip", c("./all_dists.pdf", "./all_dists.png","./all_dists.svg",dir(c("svg", "png","svg_with_params", "png_with_params", "svg_without_names"),pattern="\\.(png|svg|pdf)$",recursive=F, full.names=T)))
