@@ -396,3 +396,20 @@ plot_dist_png <- function(dist, labels=c(), fname="", color="skyblue", plot_dist
   plot_dist(dist, labels, color=color, plot_dist_name=plot_dist_name)
   dev.off()
 }
+
+# Function that renders text as an image. Useful for constructing images of equations. 
+# See ?plotmath for examples and documentation
+
+plot_text_svg <- function(expr, fname) {
+  svg(fname, bg="transparent")
+  plot.new()
+  text(0.5, 0.5, expr)
+  dev.off()
+}
+
+plot_text_png <- function(expr, fname, pointsize=32, width=640, height=480, ) {
+  png(fname, bg="transparent", width=width, height=height, pointsize=pointsize)
+  plot.new()
+  text(0.5, 0.5, expr)
+  dev.off()
+}
