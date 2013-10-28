@@ -407,7 +407,7 @@ plot_text_svg <- function(expr, fname) {
   dev.off()
 }
 
-plot_text_png <- function(expr, fname, pointsize=32, width=640, height=480, ) {
+plot_text_png <- function(expr, fname, pointsize=32, width=640, height=480 ) {
   png(fname, bg="transparent", width=width, height=height, pointsize=pointsize)
   plot.new()
   text(0.5, 0.5, expr)

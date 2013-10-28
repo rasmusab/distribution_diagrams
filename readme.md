@@ -39,7 +39,11 @@ Files
 
 The file [plot_dist.R](https://raw.github.com/rasmusab/distribution_diagrams/master/plot_dist.R) contains all you need to get going: the functions `plot_dist`, `plot_dist_svg`, `plot_dist_png` and the list of the predefined distributions.
 
-If you don't want to bother with generating your own images you can download png and svg images for all the distributions [here](https://raw.github.com/rasmusab/distribution_diagrams/master/distribution_diagrams.zip). The actual script that generated the images is available [here](https://raw.github.com/rasmusab/distribution_diagrams/master/create_diagrams.R) which might be useful to look at as it contains many examples of how `plot_dist` works. 
+If you don't want to bother with generating your own images you can download png and svg images for all the distributions [here](https://raw.github.com/rasmusab/distribution_diagrams/master/distribution_diagrams.zip). The actual script that generated the images is available [here](https://raw.github.com/rasmusab/distribution_diagrams/master/create_diagrams.R) which might be useful to look at as it contains many examples of how `plot_dist` works.
+
+I've also made a nifty template you can use together with the open-source [Libre Office Draw](http://www.libreoffice.org/features/draw/) that makes it really easy to make Kruschke style diagrams. Download the template [here](https://raw.github.com/rasmusab/distribution_diagrams/master/krusche_style_diagrams_template.odg). A file with some extra distributions for Libre Office Draw is available [here](https://raw.github.com/rasmusab/distribution_diagrams/master/extra_distributions.odg). I also made a short screencast that shows how to use this template:
+
+[![Screencast video link](screencast_image.jpeg)](http://youtu.be/uSJ2S900UHA)
 
 Plot size and output format
 ---------------------------
