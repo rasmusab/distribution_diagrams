@@ -98,8 +98,8 @@ Here we see that the t distribution has five named labels and to make a diagram 
 
 
 ```r
-plot_dist(dists$t, labels = c(mean = expression(mu), left_sd = expression(sigma), 
-    right_df = "df"))
+plot_dist(dists$t, labels = c(mean = expression(mu), 
+          left_scale = expression(sigma), right_df = "df"))
 ```
 
 ![plot of chunk unnamed-chunk-6](https://raw.github.com/rasmusab/distribution_diagrams/master/figure/unnamed-chunk-6.png) 

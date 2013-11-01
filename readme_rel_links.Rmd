@@ -64,7 +64,7 @@ dists$t$labels
 Here we see that the t distribution has five named labels and to make a diagram with a $\sigma$ to the left, and a `df` to the right we would write:
 
 ```{r  fig.width=2.25, fig.height=1.688, fig.show='hold'} 
-plot_dist(dists$t, labels=c(mean = expression(mu), left_sd = expression(sigma), right_df = "df"))
+plot_dist(dists$t, labels=c(mean = expression(mu), left_scale = expression(sigma), right_df = "df"))
 
 ```
 
