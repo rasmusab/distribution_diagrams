@@ -121,8 +121,8 @@ dists <- list(
     ddist_params = list(min=0.15, max=0.85),
     labels = list(min=c(0.18,0.55), max=c(0.82,0.55))
   ),
-  bernouli = list(
-    name = "Bernouli",
+  bernoulli = list(
+    name = "Bernoulli",
     name_pos = c(0.5, 0.1),
     plot_type = "bar",
     x = round(seq(-0.4, 1.4, 0.1), 1),
