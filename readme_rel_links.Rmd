@@ -48,8 +48,8 @@ plot_dist(dists$beta, labels=c(params = "a, b"), scale=3)
 However, if you just want to make `svg` or `png` files to import into a drawing program you can use the convenience functions `plot_dist_svg` and `plot_dist_png`.
 
 ```{r eval=FALSE}
-plot_dist_png("bernouli_dist.png",dists$bernouli, expression(theta))
-plot_dist_png("bernouli_dist.svg",dists$bernouli, expression(theta))
+plot_dist_png(dists$bernoulli, fname="bernoulli_dist.png", expression(theta))
+plot_dist_svg(dists$bernoulli, fname="bernoulli_dist.svg", expression(theta))
 ```
 As svg is a vector format you can then scale the diagrams to your liking in your drawing program.
 
@@ -70,7 +70,7 @@ plot_dist(dists$t, labels=c(mean = expression(mu), left_scale = expression(sigma
 
 You can also change the color of the diagrams using the parameter `color`.
 ```{r  fig.width=2.25, fig.height=1.688, fig.show='hold'} 
-plot_dist(dists$bernouli, labels=c(p = "p"), color="purple")
+plot_dist(dists$bernoulli, labels=c(p = "p"), color="purple")
 
 ```
 
